@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren, useMemo } from "react";
-import { WagmiConfig, configureChains, createConfig } from "wagmi";
+import { WagmiConfig, configureChains, createConfig, sepolia } from "wagmi";
 import { mainnet, polygon } from "wagmi/chains";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
@@ -16,6 +16,8 @@ const {
   REACT_APP_POLYGON_NODE_WSS_URL,
   REACT_APP_ETHEREUM_NODE_HTTP_URL,
   REACT_APP_ETHEREUM_NODE_WSS_URL,
+  REACT_APP_SEPOLIA_NODE_HTTP_URL,
+  REACT_APP_SEPOLIA_NODE_WSS_URL,
   REACT_APP_PUBLIC_URL,
 } = process.env;
 
@@ -32,11 +34,16 @@ const Web3Provider: FC<PropsWithChildren> = ({ children }) => {
   const { isWallet } = useTrackedState();
   const config = useMemo(() => {
     const { chains, publicClient, webSocketPublicClient } = configureChains(
-      [polygon, mainnet],
+      [polygon, mainnet, sepolia],
       [
         jsonRpcProvider({
           rpc: (chain) => {
             switch (chain.id) {
+              case 11155111: // sepolia
+                return {
+                  http: REACT_APP_SEPOLIA_NODE_HTTP_URL,
+                  webSocket: REACT_APP_SEPOLIA_NODE_WSS_URL,
+                };
               case 137: // polygon/matic
                 return {
                   http: REACT_APP_POLYGON_NODE_HTTP_URL,

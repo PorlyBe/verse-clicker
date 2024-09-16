@@ -9,6 +9,8 @@ class Player {
   aMPF: number;
   aMPC: number;
 
+  prestige: number;
+
   constructor() {
     this.cookies = 0;
     this.cookieStats = {
@@ -18,6 +20,7 @@ class Player {
     };
     this.aMPF = 0;
     this.aMPC = 1;
+    this.prestige = 0;
   }
 }
 

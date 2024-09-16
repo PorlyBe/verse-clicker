@@ -32,6 +32,15 @@ const BuildingUpgradeTabs: FC<Props> = ({ setSelectedTab, selectedTab }) => {
             <Upgrades />
             Upgrades
           </TabButton>,
+          <TabButton
+            key="prestige"
+            $isSelected={selectedTab === 2}
+            type="button"
+            onClick={() => setSelectedTab(2)}
+          >
+            <Upgrades />
+            Prestige
+          </TabButton>,
         ]}
       />
     </>

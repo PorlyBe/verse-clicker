@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 
 import Advertisement from "../Advertisement";
 import Boosts from "../Boosts/Boosts";
+import PrestigeInfo from "../PrestigeInfo";
 import ShopList from "../Shop/ShopList";
 import UpgradesList from "../Shop/UpgradesList";
 import BuildingUpgradeTabs from "./BuildingUpgradeTabs";
@@ -44,10 +45,19 @@ const GameBoard: FC = () => {
         </TabsWrapper>
 
         <TabContent>
-          {selectedTab === 0 ? (
+          {selectedTab === 0 && (
             <ShopList toggleOpen={toggleOpen} setToggleOpen={setToggleOpen} />
-          ) : (
+          )}
+
+          {selectedTab === 1 && (
             <UpgradesList
+              toggleOpen={toggleOpen}
+              setToggleOpen={setToggleOpen}
+            />
+          )}
+
+          {selectedTab === 2 && (
+            <PrestigeInfo
               toggleOpen={toggleOpen}
               setToggleOpen={setToggleOpen}
             />

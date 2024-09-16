@@ -10,6 +10,7 @@ export const setNetwork = (
   state: State,
   payload: SetGameModeAction["payload"],
 ): State => {
+  console.log(payload);
   return {
     ...state,
     gameMode: payload,
